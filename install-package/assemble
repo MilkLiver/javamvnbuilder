@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+
+# TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
+cd /tmp/src/
+mvn clean package
+
+# TODO: move builded file to workspace and remove unused file (such like source code ...).
+ls target/ | grep '.jar$' | xargs -l bash -c 'cp target/$0 /opt/app-root/run/'
+cp -rf src/main/resources/* /opt/app-root/run/config/
+chmod 755 -Rf /opt/app-root/run
+
+# TODO: clean tmp files
+rm -rf /tmp/*
+rm -rf /opt/app-root/src/.m2

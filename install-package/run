@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+exec ls /opt/app-root/run | grep '.jar$' | xargs -l bash -c 'java -jar -Dspring.config.location=/opt/app-root/run/config/application.properties /opt/app-root/run/$0'
